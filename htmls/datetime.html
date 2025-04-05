@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Время в разных городах</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; text-align: center; }
+        th, td { border: 1px solid black; padding: 10px; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <button id="showTime">Показать время</button>
+    <table id="timeTable" class="hidden">
+        <thead>
+            <tr>
+                <th>Город</th>
+                <th>Страна</th>
+                <th>Дата и время</th>
+                <th>UTC</th>
+                <th>MSK</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+                $cities = [
+                    ['Мумбаи', 'Индия', 'Asia/Kolkata', 2, 'UTC+5:30'],
+                    ['Уанкайо', 'Перу', 'America/Lima', -8, 'UTC-5'],
+                    ['Ниамей', 'Нигер', 'Africa/Niamey', -2, 'UTC+1'],
+                    ['Иркутск', 'Россия', 'Asia/Irkutsk', 5, 'UTC+8']
+                ];
+                
+                foreach ($cities as $city) {
+                    echo "<tr data-tz='" . $city[2] . "' data-msk='" . $city[3] . "'>";
+                    echo "<td>" . $city[0] . "</td>";
+                    echo "<td>" . $city[1] . "</td>";
+                    echo "<td class='time'></td>";
+                    echo "<td>" . $city[4] . "</td>";
+                    echo "<td></td>";
+                    echo "</tr>";
+                }
+            ?>
+        </tbody>
+    </table>
+    
+    <script>
+        document.getElementById('showTime').addEventListener('click', function() {
+            const table = document.getElementById('timeTable');
+            table.classList.remove('hidden');
+            
+            const now = new Date();
+            document.querySelectorAll('tbody tr').forEach(row => {
+                const tz = row.getAttribute('data-tz');
+                const mskOffset = parseInt(row.getAttribute('data-msk'));
+                const timeCell = row.querySelector('.time');
+                
+                const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: tz };
+                timeCell.textContent = new Intl.DateTimeFormat('ru-RU', options).format(now);
+                row.cells[4].textContent = `MSK ${mskOffset >= 0 ? '+' : ''}${mskOffset}`;
+            });
+        });
+    </script>
+</body>
+</html>

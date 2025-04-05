@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 4</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/logo.css">
+    <link rel="stylesheet" href="css/words.css">
+    <script src="scripts/words.js"></script>
+</head>
+<body>
+
+    <header>
+        <a href="../index.html">            
+            <div class="logo-pizza"></div>
+        </a>
+        <nav class="menu">
+            <ul>
+                <li><a href="../index.html">Главная</a></li>
+                <li><a href="task1.html">Задание 1</a></li>
+                <li><a href="task2.html">Задание 2</a></li>
+                <li><a href="task3.html">Задание 3</a></li>
+                <li><a href="task4.html">Задание 4</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main>
+        <h1>Задание 4</h1>
+        <p>Слова</p>
+        <br>
+        <div id="container" class="container">
+            <div class="up" id="up">
+            </div>
+            <div class="down">
+                <div class="left" id="left" ondrop="drop(event, 'left')" ondragover="allowDrop(event)">
+                </div>
+                <div class="right" id="right" ondrop="drop(event, 'right')" ondragover="allowDrop(event)">
+                    <div class="top-bar">
+                        <input type="text" id="inputField" placeholder="Введите текст">
+                        <button onclick="start()">Разобрать</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Мои задания.</p>
+    </footer>
+
+
+</body>
+</html>

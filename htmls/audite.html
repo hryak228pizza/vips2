@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аудиторная работа</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/logo.css">
+    <link rel="stylesheet" href="css/game.css">
+    
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 18px; }
+        .container { max-width: 500px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; text-align: left;}
+        /* .output { max-width: 1400px; margin: auto; margin-top: 20px; padding: 10px; border: 1px solid #000; border-radius: 5px; } */
+    </style>
+
+    <script>
+        function sendData(event) {
+        event.preventDefault();
+            
+        let formData = new FormData(document.getElementById("weightForm"));
+
+        let gender = event.submitter.getAttribute("data-gender");
+        formData.append("gender", gender);
+
+        fetch("weightcalc.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("output").innerHTML = data;
+        })
+        .catch(error => console.error("Ошибка:", error));
+    }
+    </script>
+
+</head>
+<body>
+
+    <header>
+        <a href="../index.html">            
+            <div class="logo-pizza"></div>
+        </a>
+        <nav class="menu">
+            <ul>
+                <li><a href="../index.html">Главная</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <form id="weightForm" onsubmit="sendData(event)">
+                <label>Имя: <input type="text" name="name"></label>
+                <label>Рост: <input type="number" name="height" value="180" min="72"></label><br>
+                <label><input type="radio" name="age" value="пожилой" checked> Пожилой</label>
+                <label><input type="radio" name="age" value="молодой"> Молодой</label>
+                <label><input type="checkbox" name="athlete"> Спортсмен</label>
+                <label><input type="checkbox" name="vegan"> Веган</label><br>
+                
+                <button type="submit" data-gender="женщина">Женщина</button>
+                <button type="submit" data-gender="мужчина">Мужчина</button>
+                <button type="submit" data-gender="приведение">Приведение</button>
+            </form>
+            
+        </div>
+        <div class="output" id="output"></div>
+
+
+    </main>
+
+    
+
+    <footer>
+        <p>&copy; 2024 Мои задания.</p>
+    </footer>
+
+</body>
+</html>

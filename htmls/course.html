@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курсовая</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/logo.css">
+    <link rel="stylesheet" href="css/game.css">
+    <script src="scripts/game.js"></script>
+</head>
+<body>
+
+    <header>
+        <a href="../index.html">            
+            <div class="logo-pizza"></div>
+        </a>
+        <nav class="menu">
+            <ul>
+                <li><a href="../index.html">Главная</a></li>
+                <li><a href="course.html">Уровень 1</a></li>
+                <li><a href="course2.html">Уровень 2</a></li>
+                <li><a href="course3.html">Уровень 3</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Первая игра -->
+        <div class="rules" style="white-space: wrap;">При нажатии на кнопку <b>Начать игру</b> запустится таймер, а лампочки по очереди
+            начнут зажигаться в определенном порядке с некоторой периодичностью. Ваша задача,
+            ориентируясь по таймеру, запомнить когда и какая лампа загорелась. После того как 
+            загорится третья лампочка, Вам будет доступна кнопка <b>Сделать ход</b>. Нажав на неё, таймер 
+            перезапустится, и уже Вы должны будете нажать на лампочки в том порядке и в то время,
+            в которое они и загорались. Чем ближе к правильному времени - тем лучше результат. Учтите,
+            оба таймера работают всего <span id="time-limit"></span> сек. </div>
+        <div class="game-container">
+            <div class="lamp" id="lamp1"></div>
+            <div class="lamp" id="lamp2"></div>
+            <div class="lamp" id="lamp3"></div>
+        </div>
+        <div class="timer">
+            Таймер: <span id="timer-display">0.000</span> сек
+            <!-- Обратный отсчет: <span id="outtimer-display">0.000</span> сек -->
+        </div>
+        <button id="start-game">Начать игру</button>
+        <button id="start-player-game" disabled>Сделать ход</button>
+
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Мои задания.</p>
+    </footer>
+
+</body>
+</html>
